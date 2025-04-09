@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js CRUD()</title>
+</head>
+<body>
+    <div style="width: 50%; margin: 100px auto; text-align: center;">
+        <h2>Js CRUD(no database & local-storage)</h2>
+        <input type="text" id="inputName" placeholder="Enter">
+        <button onclick="addName()">Add</button>
+    <hr>
+        <ul id="dataList" style="text-align: left; margin-left: 200px;"></ul>
+    </div>
+
+    <script>
+        let array = [];
+
+        //insert
+        function addName(){
+            const input = document.getElementById("inputName");
+            const name = input.value.trim();
+            if(name){
+                array.push(name);
+                input.value = "";
+                renderList();
+            }
+        }
+
+        //delete
+        function deleteName(index){
+                array.splice(index, 1);
+                renderList();
+        }
+       
+
+        //edit
+        function editName(index){
+            const editName = prompt("Edit name", array[index]);
+            if(editName){
+                array[index] = editName;
+                renderList();
+            }
+        }
+
+
+        //render
+        function renderList(){
+            const list = document.getElementById("dataList");
+            list.innerHTML = "";
+            array.forEach((name, index) => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    ${name}
+                        <button onclick= "editName(${index})">Edit</button>
+                        <button onclick="deleteName(${index})">Delete</button>
+                    `;
+                    list.appendChild(li);
+            }); 
+        }
+
+    </script>
+</body>
+</html>
