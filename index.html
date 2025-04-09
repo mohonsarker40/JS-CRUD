@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Js CRUD()</title>
+    <title>JS CRUD</title>
 </head>
 <body>
     <div style="width: 50%; margin: 100px auto; text-align: center;">
@@ -15,8 +15,13 @@
     </div>
 
     <script>
-        let array = [];
 
+        let array = JSON.parse(localStorage.getItem("array")) || [];
+
+        function saveToLocalStorage(){
+            localStorage.setItem("array", JSON.stringify(array));
+        }
+        
         //insert
         function addName(){
             const input = document.getElementById("inputName");
@@ -24,6 +29,7 @@
             if(name){
                 array.push(name);
                 input.value = "";
+                saveToLocalStorage();
                 renderList();
             }
         }
@@ -31,6 +37,7 @@
         //delete
         function deleteName(index){
                 array.splice(index, 1);
+                saveToLocalStorage();
                 renderList();
         }
        
@@ -40,12 +47,13 @@
             const editName = prompt("Edit name", array[index]);
             if(editName){
                 array[index] = editName;
+                saveToLocalStorage();
                 renderList();
             }
         }
 
 
-        //render
+        // render/display/show/list
         function renderList(){
             const list = document.getElementById("dataList");
             list.innerHTML = "";
@@ -59,6 +67,9 @@
                     list.appendChild(li);
             }); 
         }
+
+        renderList();
+        // Initial render
 
     </script>
 </body>
