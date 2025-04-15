@@ -12,22 +12,19 @@
     
 <!-- Filter & Sort -->
 <div class="mb-2 gap-4 text-end">
-    <input 
-      type="text" id="filterInput" placeholder="Search name..." 
-      oninput="renderList()" 
-      class="w-full md:w-1/3 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-    <button 
-      onclick="toggleSort()" 
-      class="bg-gray-200 text-gray-800 px-4 py-1 rounded-md hover:bg-gray-300 transition">Sort: <span id="sortLabel">A-Z</span>
+    <input type="text" id="filterInput" placeholder="Search ..." oninput="renderList()" 
+      class="w-full md:w-1/3 px-4 py-1 border border-gray-300 rounded-md"/>
+    <button onclick="toggleSort()" 
+      class="bg-gray-200 text-gray-800 px-4 py-1 rounded-md hover:bg-gray-300 transition">Sort: <span id="sortName">A-Z</span>
     </button>
   </div>
 
 <hr class="my-4 border-gray-300" />
 
-    <!-- Input & Add -->
+    <!-- Data Insert -->
     <div class="flex items-center gap-4 mb-4">
       <input type="text" id="inputName" placeholder="Type something..." 
-        class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+        class="flex-1 px-4 py-2 border border-gray-300 rounded-md"/>
 
       <button onclick="addName()" 
         class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Add</button>
@@ -39,11 +36,11 @@
     <!-- Pagination -->
     <div id="paginationControls" class="flex justify-between items-center hidden">
       <button onclick="changePage(-1)" 
-        class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50" id="prevBtn">Previous</button>
+        class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50" id="prevBtn">Previous</button>
       <span id="pageInfo" class="text-gray-600"></span>
       <button 
         onclick="changePage(1)" 
-        class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
+        class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
         id="nextBtn">Next</button>
     </div>
   </div>
@@ -93,7 +90,7 @@
 
     function toggleSort() {
       sortAsc = !sortAsc;
-      document.getElementById("sortLabel").textContent = sortAsc ? "A-Z" : "Z-A";
+      document.getElementById("sortName").textContent = sortAsc ? "A-Z" : "Z-A";
       renderList();
     }
 
